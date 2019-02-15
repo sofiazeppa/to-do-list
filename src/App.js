@@ -30,10 +30,21 @@ class App extends Component {
 	}
 
 	addTask() {
-		const newTask = {
-			text: this.state.newTask,
-			done: false,
-			id: 0
+		if (this.state.newTask) {
+			const lastId = this.state.tasks[this.state.tasks.length-1].id
+			const newTask = {
+				text: this.state.newTask,
+				done: false,
+				id: lastId + 1
+			}
+		
+			this.setState({
+				// operador de propagacion
+				// spread operator
+
+				tasks: [...this.state.tasks, newTask],
+				newTask: ''
+			})
 		}
 	}
 
@@ -48,7 +59,7 @@ class App extends Component {
 
 				<div>
 					<input onChange={(e) => this.handleOnChangeInput(e)} value={this.state.newTask}/>
-					<button>Nueva tarea</button>
+					<button onClick={() => this.addTask()}>Nueva tarea</button>
 				</div>
 
 
