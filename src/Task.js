@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Task extends Component {
     constructor(props) {
@@ -7,7 +8,19 @@ class Task extends Component {
 
     render() {
         return(
-            <li>{this.props.tasks.text}, {this.props.tasks.done ? 'Hecha' : 'Pendiente'}</li>
+            <li>
+                <span>
+                    {this.props.tasks.text}
+                </span>
+                <span>
+                    <button onClick={this.props.toggleDone} className={this.props.done ? 'done' : 'notDone'}>
+                        <FontAwesomeIcon icon='check' />
+                    </button>
+                    <button onClick={() => this.props.removeTask(this.props.tasks.id)}>
+                        <FontAwesomeIcon icon='trash'/>                        
+                    </button>
+                </span>
+            </li>
         )
     }
 }

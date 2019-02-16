@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Task from './Task.js';
 import ToggleListButton from './ToggleListButton.js';
-import './App.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import './App.scss'
+library.add(faCheck, faTrash)
+
+
 
 class App extends Component {
 	constructor(props) {
@@ -15,6 +20,8 @@ class App extends Component {
 				{ text: 'Lorem 2', done: false, id: 2 },
 			]
 		}
+	
+
 	}
 
 	toggleList() {
@@ -48,9 +55,23 @@ class App extends Component {
 		}
 	}
 
+	removeTask(id) {
+		this.setState({
+			// .filter() devuelve un nuevo array de los elementos que pasan la condicion pasada en el parametro
+			// en este caso, devuelve un arr con todos los elementos cuyo id sea diferente al id pasado x parametro
+			tasks: this.state.tasks.filter(t => t.id !== id)
+		})
+	}
+
+	toggleDone() {
+		this.setState({
+			done: !this.state.done
+		})
+	}
+
 	render() {
-		let li = this.state.tasks.map(function(t) {
-			return <Task tasks={t}/>
+		let taskList = this.state.tasks.map(function(t, i) {
+			return <Task tasks={t} key={i} removeTask={() => this.removeTask()} toggleDone={() => this.toggleDone()}/>
 		})
 
 
@@ -67,7 +88,7 @@ class App extends Component {
 				<ToggleListButton toggle={() => this.toggleList()}/>
 				
 				<ul className={this.state.showList ? 'show' : 'hide'}>
-					{li}
+					{taskList}
 				</ul>
 			
 			</div>
