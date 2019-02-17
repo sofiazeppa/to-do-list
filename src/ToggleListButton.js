@@ -9,7 +9,7 @@ class ToggleListButton extends Component {
     render() {
         return(
             // recieves by props (this.props.toggle) the function toggleList declared in App
-            <button onClick={this.props.toggle}>Mostrar lista</button>
+            <button onClick={this.props.toggle}>{this.props.showList ? 'Hide list' : 'Show list'}</button>
         )
     }
 }

@@ -4,3 +4,37 @@
 .hide {
 	display: none;
 }
+
+.done {
+	text-decoration: line-through;
+}
+
+
+.main-container {
+	background-color: lightcoral;
+	width: 50%;
+	margin: 0 auto;
+	ul {
+		padding-left: 0;
+		display: flex;
+		flex-direction: column;
+		.task {
+			list-style-type: none;
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			.task-text {
+			}
+			.task-buttons { 
+				display: flex;
+				button {
+					display: flex;
+					border: none;
+					justify-content: center;
+					align-content: center;
+				}
+			}
+
+		}
+	}
+}

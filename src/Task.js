@@ -8,15 +8,15 @@ class Task extends Component {
 
     render() {
         return(
-            <li>
-                <span>
-                    {this.props.tasks.text}
+            <li className='task'>
+                <span className={[this.props.task.done ? 'done' : 'notDone', 'task-text'].join(' ')}>
+                    {this.props.task.text}
                 </span>
-                <span>
-                    <button onClick={this.props.toggleDone} className={this.props.done ? 'done' : 'notDone'}>
+                <span className='task-buttons'>
+                    <button onClick={() => this.props.toggleDone(this.props.task.id)}>
                         <FontAwesomeIcon icon='check' />
                     </button>
-                    <button onClick={() => this.props.removeTask(this.props.tasks.id)}>
+                    <button onClick={() => this.props.removeTask(this.props.task.id)}>
                         <FontAwesomeIcon icon='trash'/>                        
                     </button>
                 </span>
