@@ -25,6 +25,7 @@ class App extends Component {
 		this.removeTask = this.removeTask.bind(this);
 		this.addTask = this.addTask.bind(this);
 		this.handleOnChangeInput = this.handleOnChangeInput.bind(this);
+		this.toggleList = this.toggleList.bind(this)
 	}
 
 	toggleList() {
@@ -94,7 +95,7 @@ class App extends Component {
 				<Form addTask={this.addTask} onChange={this.handleOnChangeInput} newTask={this.state.newTask}/>
 
 				{/* passes the function toggleList as props */}
-				<ToggleListButton showList={this.state.showList} toggle={() => this.toggleList()}/>
+				<ToggleListButton showList={this.state.showList} toggle={this.toggleList}/>
 				
 				<ul className={this.state.showList ? 'show' : 'hide'}>
 					{taskList}
