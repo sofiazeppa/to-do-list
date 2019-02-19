@@ -14,7 +14,7 @@ class Task extends Component {
                 </span>
                 <span className='task-buttons'>
                     <button onClick={() => this.props.toggleDone(this.props.task.id)}>
-                        <FontAwesomeIcon icon='check' />
+                        {this.props.task.done ? <FontAwesomeIcon icon='ellipsis-h'/> : <FontAwesomeIcon icon='check'/>}
                     </button>
                     <button onClick={() => this.props.removeTask(this.props.task.id)}>
                         <FontAwesomeIcon icon='trash'/>                        

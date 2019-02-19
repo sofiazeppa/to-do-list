@@ -3,9 +3,9 @@ import Task from './Task.js';
 import Form from './Form.js';
 import ToggleListButton from './ToggleListButton.js';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import './App.scss'
-library.add(faCheck, faTrash)
+library.add(faCheck, faTrash, faEllipsisH)
 
 
 class App extends Component {
@@ -14,7 +14,6 @@ class App extends Component {
 		
 		this.state = {
 			showList: true,
-			newTask: '',
 			tasks: [
 				{ text: 'Lorem 1', done: true, id: 1 },
 				{ text: 'Lorem 2', done: false, id: 2 },
@@ -23,9 +22,8 @@ class App extends Component {
 	
 		this.toggleDone = this.toggleDone.bind(this);
 		this.removeTask = this.removeTask.bind(this);
-		this.addTask = this.addTask.bind(this);
-		this.handleOnChangeInput = this.handleOnChangeInput.bind(this);
-		this.toggleList = this.toggleList.bind(this)
+		this.toggleList = this.toggleList.bind(this);
+		this.updateTasks = this.updateTasks.bind(this);
 	}
 
 	toggleList() {
@@ -34,29 +32,10 @@ class App extends Component {
 		})
 	}
 
-	handleOnChangeInput(e) {
+	updateTasks(t) {
 		this.setState({
-			newTask: e.target.value
+			tasks: t
 		})
-	}
-
-	addTask(event) {
-		event.preventDefault();
-		if (this.state.newTask !== '') {
-			const lastId = this.state.tasks[this.state.tasks.length-1].id
-			const newTask = {
-				text: this.state.newTask,
-				done: false,
-				id: lastId + 1
-			}
-		
-			this.setState({
-				// operador de propagacion
-				// spread operator
-				tasks: [...this.state.tasks, newTask],
-				newTask: ''
-			})
-		}
 	}
 
 	removeTask(id) {
@@ -87,12 +66,7 @@ class App extends Component {
 		return (
 			<div className='main-container'>
 
-				{/* <form onSubmit={(e) => this.addTask(e)}>
-					<input onChange={(e) => this.handleOnChangeInput(e)} value={this.state.newTask}/>
-					<button>Nueva tarea</button>
-				</form> */}
-
-				<Form addTask={this.addTask} onChange={this.handleOnChangeInput} newTask={this.state.newTask}/>
+				<Form tasks={this.state.tasks} onChange={this.updateTasks}/>
 
 				{/* passes the function toggleList as props */}
 				<ToggleListButton showList={this.state.showList} toggle={this.toggleList}/>
