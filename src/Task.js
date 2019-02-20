@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ToggleDoneButton from './ToggleDoneButton.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Task extends Component {
     constructor(props) {
         super(props)
+    
     }
 
     render() {
@@ -16,6 +18,7 @@ class Task extends Component {
                     <button onClick={() => this.props.toggleDone(this.props.task.id)}>
                         {this.props.task.done ? <FontAwesomeIcon icon='ellipsis-h'/> : <FontAwesomeIcon icon='check'/>}
                     </button>
+                    {/* <ToggleDoneButton task={this.props.task.id} tasks={this.props.tasks}/> */}
                     <button onClick={() => this.props.removeTask(this.props.task.id)}>
                         <FontAwesomeIcon icon='trash'/>                        
                     </button>

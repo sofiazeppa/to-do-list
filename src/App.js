@@ -22,13 +22,13 @@ class App extends Component {
 	
 		this.toggleDone = this.toggleDone.bind(this);
 		this.removeTask = this.removeTask.bind(this);
-		this.toggleList = this.toggleList.bind(this);
 		this.updateTasks = this.updateTasks.bind(this);
+		this.updateShowList = this.updateShowList.bind(this);
 	}
 
-	toggleList() {
+	updateShowList(s) {
 		this.setState({
-			showList: !this.state.showList
+			showList: s
 		})
 	}
 
@@ -59,7 +59,7 @@ class App extends Component {
 
 	render() {
 		const taskList = this.state.tasks.map((t) => {
-			return <Task task={t} key={t.id} removeTask={this.removeTask} toggleDone={this.toggleDone}/>
+			return <Task tasks={this.state.tasks} task={t} key={t.id} removeTask={this.removeTask} toggleDone={this.toggleDone}/>
 		})
 
 
@@ -69,7 +69,7 @@ class App extends Component {
 				<Form tasks={this.state.tasks} onChange={this.updateTasks}/>
 
 				{/* passes the function toggleList as props */}
-				<ToggleListButton showList={this.state.showList} toggle={this.toggleList}/>
+				<ToggleListButton showList={this.state.showList} onChange={this.updateShowList}/>
 				
 				<ul className={this.state.showList ? 'show' : 'hide'}>
 					{taskList}

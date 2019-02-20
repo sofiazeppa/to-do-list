@@ -1,5 +1,5 @@
 .show {
-	display: block;
+	display: flex;
 }
 .hide {
 	display: none;
@@ -16,7 +16,6 @@
 	margin: 0 auto;
 	ul {
 		padding-left: 0;
-		display: flex;
 		flex-direction: column;
 		.task {
 			list-style-type: none;
