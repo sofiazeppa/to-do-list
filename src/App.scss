@@ -1,39 +1,89 @@
+@mixin buttonStyle {
+	outline: none;
+	cursor: pointer;
+	background-color: #B39CD0;
+	color: #F9CBFF;
+	font-size: 15px;
+	border: none;
+	&:hover {
+		background-color: #4B4453;
+	}
+}
+
+
+body {
+	background-image: linear-gradient(to top, #845ec2, #0085e4, #00a2e5, #00b9cc, #00c9a7);
+	height: 100vh;
+}
+
+.main-container {
+	background-color: #FF6F91;
+	width: 45%;
+	margin: 1% auto;
+	padding: 1%;
+	-webkit-box-shadow: 10px 10px 28px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 28px -1px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 28px -1px rgba(0,0,0,0.75);
+	h1 {
+		color: #FBEAFF;
+	}
+	form {
+		width: 100%;
+		display: flex;
+		input {
+			width: 80%;
+			background-color: #845EC2;
+			border: none;
+			outline: none;
+			color: #4B4453;
+		}
+		button {
+			width: 20%;
+			@include buttonStyle;
+		}
+	}
+	button {
+		@include buttonStyle;
+	}
+	ul {
+		width: 100%;
+		padding-left: 0;
+		flex-direction: column;
+		li {
+			max-width: 100%;
+			margin: 1% 0;
+			background-color: #845EC2;
+			list-style-type: none;
+			display: flex;
+			justify-content: space-between;
+			color: #FBEAFF;
+			.task-text {
+				font-size: 20px;
+			}
+			.task-buttons { 
+				display: flex;
+				button {
+					display: flex;
+					justify-content: center;
+					align-content: center;
+					@include buttonStyle;
+					&:hover {
+						color: #C592FF;
+					}
+				}
+			}
+
+		}
+	}
+}
+
 .show {
 	display: flex;
 }
 .hide {
 	display: none;
 }
-
 .done {
 	text-decoration: line-through;
-}
-
-
-.main-container {
-	background-color: lightcoral;
-	width: 50%;
-	margin: 0 auto;
-	ul {
-		padding-left: 0;
-		flex-direction: column;
-		.task {
-			list-style-type: none;
-			display: flex;
-			width: 100%;
-			justify-content: space-between;
-			.task-text {
-			}
-			.task-buttons { 
-				display: flex;
-				button {
-					display: flex;
-					border: none;
-					justify-content: center;
-					align-content: center;
-				}
-			}
-
-		}
-	}
+	text-decoration-color: #413444;
 }

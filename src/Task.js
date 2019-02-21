@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
-import ToggleDoneButton from './ToggleDoneButton.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ToggleDoneButton from './ToggleDoneButton.js';
+import RemoveTaskButton from './RemoveTaskButton.js';
 
 class Task extends Component {
-    constructor(props) {
-        super(props)
-    
-    }
 
     render() {
         return(
-            <li className='task'>
+            <li>
                 <span className={[this.props.task.done ? 'done' : 'notDone', 'task-text'].join(' ')}>
                     {this.props.task.text}
                 </span>
                 <span className='task-buttons'>
-                    <button onClick={() => this.props.toggleDone(this.props.task.id)}>
-                        {this.props.task.done ? <FontAwesomeIcon icon='ellipsis-h'/> : <FontAwesomeIcon icon='check'/>}
-                    </button>
-                    {/* <ToggleDoneButton task={this.props.task.id} tasks={this.props.tasks}/> */}
-                    <button onClick={() => this.props.removeTask(this.props.task.id)}>
-                        <FontAwesomeIcon icon='trash'/>                        
-                    </button>
+                    <ToggleDoneButton task={this.props.task} tasks={this.props.tasks} onChange={this.props.onChange}/>
+                    <RemoveTaskButton task={this.props.task} tasks={this.props.tasks} onChange={this.props.onChange}/>
                 </span>
             </li>
         )

@@ -43,7 +43,7 @@ class Form extends Component {
         return(
             <form onSubmit={this.addTask}>
                 <input onChange={this.handleOnChangeInput} value={this.state.newTask}></input>
-                <button>Nueva tarea</button>
+                <button>New task</button>
             </form>
         )
     }

@@ -20,8 +20,6 @@ class App extends Component {
 			]
 		}
 	
-		this.toggleDone = this.toggleDone.bind(this);
-		this.removeTask = this.removeTask.bind(this);
 		this.updateTasks = this.updateTasks.bind(this);
 		this.updateShowList = this.updateShowList.bind(this);
 	}
@@ -38,37 +36,18 @@ class App extends Component {
 		})
 	}
 
-	removeTask(id) {
-		this.setState({
-			// .filter() devuelve un nuevo array de los elementos que pasan la condicion pasada en el parametro
-			// en este caso, devuelve un arr con todos los elementos cuyo id sea diferente al id pasado x parametro
-			tasks: this.state.tasks.filter(t => t.id !== id)
-		})
-	}
-
-	toggleDone(id) {
-		// .find() devuelve el primer elemento que cumple la condicion pasada en el parametro
-		// en este caso, devuelve el elemento (t) cuyo id es igual al id pasado por parametro
-		const task = this.state.tasks.find(t => t.id === id)
-		task.done = !task.done
-		this.setState({
-			tasks: this.state.tasks
-		})
-	}
-
 
 	render() {
 		const taskList = this.state.tasks.map((t) => {
-			return <Task tasks={this.state.tasks} task={t} key={t.id} removeTask={this.removeTask} toggleDone={this.toggleDone}/>
+			return <Task tasks={this.state.tasks} task={t} key={t.id} onChange={this.updateTasks}/>
 		})
-
 
 		return (
 			<div className='main-container'>
+				<h1>To do list</h1>
 
 				<Form tasks={this.state.tasks} onChange={this.updateTasks}/>
 
-				{/* passes the function toggleList as props */}
 				<ToggleListButton showList={this.state.showList} onChange={this.updateShowList}/>
 				
 				<ul className={this.state.showList ? 'show' : 'hide'}>
