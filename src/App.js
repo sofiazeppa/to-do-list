@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Task from './Task.js';
 import Form from './Form.js';
 import ToggleListButton from './ToggleListButton.js';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheck, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
-import './App.scss'
-library.add(faCheck, faTrash, faEllipsisH)
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheck, faTrash, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import './App.scss';
+library.add(faCheck, faTrash, faEllipsisH);
 
 
 class App extends Component {

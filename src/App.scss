@@ -67,9 +67,6 @@ body {
 					justify-content: center;
 					align-content: center;
 					@include buttonStyle;
-					&:hover {
-						color: #C592FF;
-					}
 				}
 			}
 
