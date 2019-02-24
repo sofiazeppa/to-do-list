@@ -14,10 +14,12 @@ class App extends Component {
 		
 		this.state = {
 			showList: true,
-			tasks: [
-				{ text: 'Lorem 1', done: true, id: 1 },
-				{ text: 'Lorem 2', done: false, id: 2 },
-			]
+			tasks: JSON.parse(localStorage.getItem('tasks')) || 
+				[{
+					text: 'make a list',
+					done: true,
+					id: 1
+				}]
 		}
 	
 		this.updateTasks = this.updateTasks.bind(this);
@@ -34,17 +36,21 @@ class App extends Component {
 		this.setState({
 			tasks: t
 		})
+
+		localStorage.setItem('tasks', JSON.stringify(t))
 	}
 
 
 	render() {
-		const taskList = this.state.tasks.map((t) => {
+		let taskList = JSON.parse(localStorage.getItem('tasks'));
+		taskList = taskList.map((t) => {
 			return <Task tasks={this.state.tasks} task={t} key={t.id} onChange={this.updateTasks}/>
 		})
 
 		return (
 			<div className='main-container'>
 				<h1>To do list</h1>
+				<h2>with React and localStorage</h2>
 
 				<Form tasks={this.state.tasks} onChange={this.updateTasks}/>
 

@@ -20,11 +20,11 @@ class Form extends Component {
 	addTask(e) {
 		e.preventDefault();
 		if (this.state.newTask !== '') {
-			const lastId = this.props.tasks[this.props.tasks.length-1].id
+			const id = this.props.tasks.length === 0 ? (1) : this.props.tasks[this.props.tasks.length - 1].id + 1
 			const newTask = {
 				text: this.state.newTask,
 				done: false,
-				id: lastId + 1
+				id: id
 			}
 
             const tasks = this.props.tasks
